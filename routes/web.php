@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/mentions_legales', function () {
     return view('mentions/mentions_legales');
-});
+})->name('mentions_legales');
 
 //Route::get('/contact', [ContactController::class,'contact']);
 Route::post('/contact', [ContactController::class,'confirm']);

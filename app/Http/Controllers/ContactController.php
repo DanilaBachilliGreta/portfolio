@@ -36,6 +36,6 @@ class ContactController extends Controller
         $contact->email = $request->email;
         $contact->message = $request->message;
         $contact->save();
-        return "C'est bien enregistré !";
+        return view('contact/confirm');
     }
 }
