@@ -25,8 +25,12 @@ Route::get('/mentions_legales', function () {
     return view('mentions/mentions_legales');
 });
 
-Route::get('/contact', [ContactController::class,'contact']);
+//Route::get('/contact', [ContactController::class,'contact']);
 Route::post('/contact', [ContactController::class,'confirm']);
+
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 

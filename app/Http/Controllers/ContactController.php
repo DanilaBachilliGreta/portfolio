@@ -9,15 +9,33 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function contact()
-    {
-        return view('contact/contact');
-    }
+    // public function contact()
+    // {
+    //     return view('contact/contact');
+    // }
 
     public function confirm(ContactRequest $request)
     {
         Mail::to('admin@roger.com')
          ->send(new Contact($request->except('')));  //->except('_token')
         return view('contact/confirm');
+    }
+    public function create()
+    {
+        //
+        return view('contact/contact');
+    }
+    public function store(ContactRequest $request)
+    {
+        //
+        $this->validate($request, [
+            'email' => 'bail|required|email',
+            'message' => 'bail|required|max:500'
+        ]);
+        $contact = new \App\Models\Contact;
+        $contact->email = $request->email;
+        $contact->message = $request->message;
+        $contact->save();
+        return "C'est bien enregistré !";
     }
 }
